@@ -1,13 +1,53 @@
+<!DOCTYPE html>
 <html>
 <head>
-	<%= include_gon %>
-	<script>
-	function myFunction() {
-	alert(gon.token)
-	}
-	</script>
+<%= include_gon %>
+<!-- specify the viewer version at the end of reference with ?v=v1.2.13 -->
+<link rel="stylesheet" href="https://developer.api.autodesk.com/viewingservice/v1/viewers/style.css?v=v1.2.17" type="text/css">
+<script src="https://developer.api.autodesk.com/viewingservice/v1/viewers/viewer3D.min.js?v=v1.2.17"></script>
+<script>
+    // change the token and urn(translated file location) before you try to run
+    // easiest is to go through steps on http://shiya.github.io/Intro-View-and-Data/
+    var token = gon.token;
+    var urn = gon.urn;
+    function getToken() {
+        return token;
+    }
+    function loadDocument(viewer, documentId) {
+        // Find the first 3d geometry and load that.
+        Autodesk.Viewing.Document.load(documentId, function(doc) {
+        var geometryItems = [];
+        geometryItems = Autodesk.Viewing.Document.getSubItemsWithProperties(doc.getRootItem(), {
+            'type' : 'geometry',
+            'role' : '3d'
+        }, true);
+        if (geometryItems.length > 0) {
+            viewer.load(doc.getViewablePath(geometryItems[0]));
+        }
+     }, function(errorMsg) {// onErrorCallback
+        alert("Load Error: " + errorMsg);
+        });
+    }
+    
+    function initialize() {
+        var options = {
+            'document' : 'urn:' + urn,
+            'env':'AutodeskProduction',
+            'getAccessToken': getToken,
+            'refreshToken': getToken,
+            };
+        var viewerElement = document.getElementById('viewer');
+        var viewer = new Autodesk.Viewing.Viewer3D(viewerElement, {});
+        Autodesk.Viewing.Initializer(options,function() {
+            viewer.initialize();
+            loadDocument(viewer, options.document);
+        });
+    }
+</script>
 </head>
-<body onload = "myFunction()">
 
+<body onload="initialize()">
+    <div id="viewer" style="position:absolute; width:98.7%; height:97.5%;"></div>
 </body>
+
 </html>
