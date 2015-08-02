@@ -36,7 +36,7 @@ GEM
       minitest (~> 5.1)
       thread_safe (~> 0.3, >= 0.3.4)
       tzinfo (~> 1.1)
-    adn_viewer (0.0.6)
+    adn_viewer (0.0.7)
       curb (~> 0.5, >= 0.5.4.0)
       curb-fu (~> 0.6, >= 0.6.2)
       gon (~> 5.2, >= 5.2.3)
