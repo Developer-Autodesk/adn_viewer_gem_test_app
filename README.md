@@ -45,13 +45,13 @@ This provides the credentials to supply to the http requests on the Autodesk ser
 
 ## Tutorial
 
-Follow the instructions here to install Ruby and Ruby on Rails: [rubyonrails.org/download](http://rubyonrails.org/download/)
+Follow the instructions here to install Ruby and Ruby on Rails: [rubyonrails.org/download](http://rubyonrails.org/download/). <br />
 Once you've downloaded Ruby, install Rails (this can take a very long while):
 ```
 gem install rails
 ```
 
-Now, add this to your gemfile to install the adn_viewer gem:
+Add this to your gemfile to install the adn_viewer gem:
 ```
 gem 'adn_viewer'
 ```
@@ -72,7 +72,7 @@ rails server
 
 You should have a rails server up and running on http://localhost:3000 now. Follow these steps to setup uploading and the viewer:
 
-Now generate a controller, a function within and its corresponding view:
+Generate a controller, a function within and its corresponding view:
 ```
 rails generate controller welcome index
 ```
@@ -82,7 +82,7 @@ Now, open the file config/routes.rb in your editor and uncomment the following l
 root 'welcome#index'
 ```
 
-Now please add the following code to your welcome controller (app/controllers/welcome_controller.rb), thereby changing the index function to:
+Add the following code to your welcome controller (app/controllers/welcome_controller.rb), thereby changing the index function to:
 ```
 def index
     key = 'yourkey'                                           #credentials from developer.autodesk.com
@@ -110,7 +110,7 @@ def index
   end
 ```
 
-Now go ahead and change the feilds here with your credentials, choice of bucket name and file. Read through the commands and comments to understand the gem functions
+Go ahead and change the feilds here with your credentials, choice of bucket name and file. Read through the commands and comments to understand the gem functions. <br />
 Finally, add the following code to file app/views/welcome/index.html.erb:
 ```
 <!DOCTYPE html>
@@ -167,7 +167,9 @@ Finally, add the following code to file app/views/welcome/index.html.erb:
 </html>
 ```
 
-Now restart your server and go to http://localhost:3000 to get an access token, create a bucket, upload a file, register it for translation and view it on the Autodesk Viewer! 
+Now restart your server and go to http://localhost:3000 to get an access token, create a bucket, upload a file, register it for translation and view it on the Autodesk Viewer. Enjoy the power of 3D!
+
+You may view the final code that gets the server up and running in this repo. Cloning this repo, changing variable names and starting up the rails server after installing the bundle may serve you well too!
 
 Finally, here is a more complex app built incorporating the API: [sample-ruby-on-rails-app-prototyping](https://github.com/Developer-Autodesk/sample-ruby-on-rails-app-prototyping)
 
