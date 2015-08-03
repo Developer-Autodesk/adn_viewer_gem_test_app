@@ -1,6 +1,6 @@
 # adn_viewer_gem_test_app
 
-[![adn](https://img.shields.io/badge/adn_viewer-v1.0.0-yellow.svg)](https://www.ruby-lang.org/en/)
+[![adn](https://img.shields.io/badge/adn_viewer_gem-v1.0.0-yellow.svg)](https://www.ruby-lang.org/en/)
 [![Ruby](https://img.shields.io/badge/Ruby-v2.2.2-red.svg)](https://www.ruby-lang.org/en/)
 [![Rails](https://img.shields.io/badge/Rails-v4.2.3-brightgreen.svg)](http://rubyonrails.org/)
 [![LMV](https://img.shields.io/badge/View%20%26%20Data%20API-v1.2.15-green.svg)](http://developer-autodesk.github.io/)
