@@ -70,7 +70,7 @@ bundle install
 rails server
 ```
 
-You should have a rails server up and running on http://localhost:3000 now. Shut it down for now and follow these steps (or you may keep it running but restart it when you're done with these instructions):
+You should have a rails server up and running on http://localhost:3000 now. Follow these steps to setup uploading and the viewer:
 
 Now generate a controller, a function within and its corresponding view:
 ```
@@ -82,7 +82,94 @@ Now, open the file config/routes.rb in your editor and uncomment the following l
 root 'welcome#index'
 ```
 
+Now please add the following code to your welcome controller (app/controllers/welcome_controller.rb), thereby changing the index function to:
+```
+def index
+  	key = 'yourkey'				  #credentials from developer.autodesk.com
+  	secret = 'yoursecret'
+  	name = 'bucketname'										  #the name you want to give your bucket
+  	policy = 'transient'									  #the retention policy you want to register your bucket with
+  	filepath ||= "yourfilepath"             #such as "#{Rails.root}/public/Test.dwg"
+  	filename = "yourfilename"               #such as "Test.dwg"
 
+  	token = Adn_Viewer.token(key, secret)["access_token"]	  #gives you an access token
+
+   	supported_formats = Adn_Viewer.supported_formats(token)	  #fills the variable supported_formats with all formats that the viewer supports (in json format)
+
+  	Adn_Viewer.create_bucket(token, name, policy)			  #creates the bucket
+  	name = Adn_Viewer.check_bucket(token, name)["key"]		  #checks status and returns bucket name
+
+  	urn = Adn_Viewer.upload_file(token, name, filename, filepath)["objects"][0].first.to_s		#upload the file you want to view
+  	urn = urn[8...-2]										  #formats the urn correctly
+	urn = Base64.urlsafe_encode64(urn)						  #encodes the urn to allow translation	
+
+	Adn_Viewer.register(token, urn)							  #registers for translation
+
+	gon.token = token 										  #sets variables up to use in javascript for the viewer
+	gon.urn = urn
+  end
+```
+
+Now go ahead and change the feilds here with your credentials, choice of bucket name and file. Read through the commands and comments to understand the gem functions
+Finally, add the following code to file app/views/welcome/index.html.erb:
+```
+<!DOCTYPE html>
+<html>
+<head>
+<%= include_gon %>
+<link rel="stylesheet" href="https://developer.api.autodesk.com/viewingservice/v1/viewers/style.css?v=v1.2.17" type="text/css">
+<script src="https://developer.api.autodesk.com/viewingservice/v1/viewers/viewer3D.min.js?v=v1.2.17"></script>
+<script>
+    // change the token and urn(translated file location) before you try to run
+    // easiest is to go through steps on http://shiya.github.io/Intro-View-and-Data/
+    var token = gon.token;
+    var urn = gon.urn;
+    function getToken() {
+        return token;
+    }
+    function loadDocument(viewer, documentId) {
+        // Find the first 3d geometry and load that.
+        Autodesk.Viewing.Document.load(documentId, function(doc) {
+        var geometryItems = [];
+        geometryItems = Autodesk.Viewing.Document.getSubItemsWithProperties(doc.getRootItem(), {
+            'type' : 'geometry',
+            'role' : '3d'
+        }, true);
+        if (geometryItems.length > 0) {
+            viewer.load(doc.getViewablePath(geometryItems[0]));
+        }
+     }, function(errorMsg) {// onErrorCallback
+        alert("Load Error: " + errorMsg);
+        });
+    }
+    
+    function initialize() {
+        var options = {
+            'document' : 'urn:' + urn,
+            'env':'AutodeskProduction',
+            'getAccessToken': getToken,
+            'refreshToken': getToken,
+            };
+        var viewerElement = document.getElementById('viewer');
+        var viewer = new Autodesk.Viewing.Viewer3D(viewerElement, {});
+        Autodesk.Viewing.Initializer(options,function() {
+            viewer.initialize();
+            loadDocument(viewer, options.document);
+        });
+    }
+</script>
+</head>
+
+<body onload="initialize()">
+    <div id="viewer" style="position:absolute; width:98.7%; height:97.5%;"></div>
+</body>
+
+</html>
+```
+
+Now restart your server and go to http://localhost:3000 to get an access token, create a bucket, upload a file, register it for translation and view it on the Autodesk Viewer! 
+
+Finally, here is a more complex app built incorporating the API: [sample-ruby-on-rails-app-prototyping](https://github.com/Developer-Autodesk/sample-ruby-on-rails-app-prototyping)
 
 
 
