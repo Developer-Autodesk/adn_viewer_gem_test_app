@@ -25,6 +25,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 
 gem 'adn_viewer'
 gem 'curb-fu'
+gem 'curb'
 gem 'gon'
 gem 'json'
 

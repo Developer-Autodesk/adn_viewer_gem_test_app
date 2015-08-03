@@ -159,6 +159,7 @@ DEPENDENCIES
   adn_viewer
   byebug
   coffee-rails (~> 4.1.0)
+  curb
   curb-fu
   gon
   jbuilder (~> 2.0)
