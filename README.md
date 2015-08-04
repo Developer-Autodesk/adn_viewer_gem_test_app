@@ -47,17 +47,18 @@ This provides the credentials to supply to the http requests on the Autodesk ser
 ## Tutorial
 
 Follow the instructions here to install Ruby and Ruby on Rails: [rubyonrails.org/download](http://rubyonrails.org/download/). <br />
-Once you've downloaded Ruby, install Rails (this can take a very long while):
+Once you've downloaded Ruby, install Rails (this can take a very long while) and then create an app:
 ```
 gem install rails
+rails new appname
 ```
 
-Add this to your gemfile to install the adn_viewer gem:
+Add this to your Gemfile to install the adn_viewer gem:
 ```
 gem 'adn_viewer'
 ```
 
-Now, add the following to your gemfile to install dependencies:
+Now, add the following to your Gemfile to install dependencies:
 ```
 gem 'curb-fu'
 gem 'curb'
@@ -169,6 +170,8 @@ Finally, add the following code to file app/views/welcome/index.html.erb:
 ```
 
 Now restart your server and go to http://localhost:3000 to get an access token, create a bucket, upload a file, register it for translation and view it on the Autodesk Viewer. Enjoy the power of 3D!
+
+Note: Refresh after a while if you see a load error alert in the viewer. Your file is still translating.
 
 You may view the final code that gets the server up and running in this repo. Cloning this repo, changing variable names and starting up the rails server after installing the bundle may serve you well too!
 
