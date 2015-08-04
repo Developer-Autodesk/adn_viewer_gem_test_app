@@ -48,13 +48,14 @@ This provides the credentials to supply to the http requests on the Autodesk ser
 
 Follow the instructions here to install Ruby and Ruby on Rails: [rubyonrails.org/download](http://rubyonrails.org/download/). <br />
 Note: some sort of package management is recommended with Ruby and RoR. For example, [RVM](https://rvm.io/) is perfect for the job.
-Once you've downloaded Ruby, install Rails (this can take a very long while) and then create an app:
+Once you've downloaded Ruby, install Rails (this can take a very long while), then create an app and go into the app directory:
 ```
 gem install rails
-rails new appname
+rails new yourappname
+cd appname
 ```
 
-Add this to your Gemfile to install the adn_viewer gem:
+Add this to your Gemfile inside the app you just created to install the adn_viewer gem:
 ```
 gem 'adn_viewer'
 ```
