@@ -115,7 +115,7 @@ def index
 ```
 
 Note: for the filepath feild, the sample filepath is "#{Rails.root}/public/Test.dwg". Here the file Test.dwg has been stored in the public folder of the Rails app created. You can do that or even put up a link to wherever you've put up your file.
-Also, for the 3 types of polices, read this: [bucket policies](http://adndevblog.typepad.com/cloud_and_mobile/2015/01/buckets-in-autodesk-view-and-data-api.html) <br />
+Also, for the 3 types of polices available, read this: [bucket policies.](http://adndevblog.typepad.com/cloud_and_mobile/2015/01/buckets-in-autodesk-view-and-data-api.html) <br />
 Go ahead and change the feilds here with your credentials, choice of bucket name and file. Read through the commands and comments to understand the gem functions. <br />
 Finally, add the following code to file app/views/welcome/index.html.erb:
 ```
