@@ -52,7 +52,7 @@ Once you've downloaded Ruby, install Rails (this can take a very long while), th
 ```
 gem install rails
 rails new yourappname
-cd appname
+cd yourappname
 ```
 
 Add this to your Gemfile inside the app you just created to install the adn_viewer gem:
