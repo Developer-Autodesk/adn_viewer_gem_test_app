@@ -47,6 +47,7 @@ This provides the credentials to supply to the http requests on the Autodesk ser
 ## Tutorial
 
 Follow the instructions here to install Ruby and Ruby on Rails: [rubyonrails.org/download](http://rubyonrails.org/download/). <br />
+Note: some sort of package management is recommended with Ruby and RoR. For example, [RVM](https://rvm.io/) is perfect for the job.
 Once you've downloaded Ruby, install Rails (this can take a very long while) and then create an app:
 ```
 gem install rails
