@@ -16,11 +16,11 @@ class WelcomeController < ApplicationController
 
   	urn = Adn_Viewer.upload_file(token, name, filename, filepath)["objects"][0].first.to_s		#upload the file you want to view
   	urn = urn[8...-2]										  #formats the urn correctly
-	urn = Base64.urlsafe_encode64(urn)						  #encodes the urn to allow translation	
+	  urn = Base64.urlsafe_encode64(urn)						  #encodes the urn to allow translation	
 
-	Adn_Viewer.register(token, urn)							  #registers for translation
+	  Adn_Viewer.register(token, urn)							  #registers for translation
 
-	gon.token = token 										  #sets variables up to use in javascript for the viewer
-	gon.urn = urn
+	  gon.token = token 										  #sets variables up to use in javascript for the viewer
+	  gon.urn = urn
   end
 end
