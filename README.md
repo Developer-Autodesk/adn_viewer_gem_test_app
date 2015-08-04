@@ -55,7 +55,7 @@ rails new yourappname
 cd yourappname
 ```
 
-Add this to your Gemfile inside the app you just created to install the adn_viewer gem:
+Add this to your Gemfile (a file inside the app you just created) to install the adn_viewer gem:
 ```
 gem 'adn_viewer'
 ```
@@ -67,7 +67,7 @@ gem 'curb'
 gem 'gon'
 gem 'json'
 ```
-
+If you're unsure of where to add these, you may look at the Gemfile in this repo to get an idea.
 Finally install the all the requisite gems and get the server running:
 ```
 bundle install
