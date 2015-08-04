@@ -114,6 +114,7 @@ def index
   end
 ```
 
+Note: for the filepath feild, the sample filepath is "#{Rails.root}/public/Test.dwg". Here the file Test.dwg has been stored in the public folder of the Rails app created. You can do that or even put up a link to wherever you've put up your file.
 Go ahead and change the feilds here with your credentials, choice of bucket name and file. Read through the commands and comments to understand the gem functions. <br />
 Finally, add the following code to file app/views/welcome/index.html.erb:
 ```
@@ -124,8 +125,6 @@ Finally, add the following code to file app/views/welcome/index.html.erb:
 <link rel="stylesheet" href="https://developer.api.autodesk.com/viewingservice/v1/viewers/style.css?v=v1.2.17" type="text/css">
 <script src="https://developer.api.autodesk.com/viewingservice/v1/viewers/viewer3D.min.js?v=v1.2.17"></script>
 <script>
-    // change the token and urn(translated file location) before you try to run
-    // easiest is to go through steps on http://shiya.github.io/Intro-View-and-Data/
     var token = gon.token;
     var urn = gon.urn;
     function getToken() {
