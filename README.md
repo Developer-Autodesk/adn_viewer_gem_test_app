@@ -1,6 +1,6 @@
 # adn_viewer_gem_test_app
 
-[![adn](https://img.shields.io/badge/adn_viewer_gem-v1.0.0-yellow.svg)](https://www.ruby-lang.org/en/)
+[![adn](https://img.shields.io/badge/adn_viewer_gem-v1.0.2-yellow.svg)](https://www.ruby-lang.org/en/)
 [![Ruby](https://img.shields.io/badge/Ruby-v2.2.2-red.svg)](https://www.ruby-lang.org/en/)
 [![Rails](https://img.shields.io/badge/Rails-v4.2.3-brightgreen.svg)](http://rubyonrails.org/)
 [![LMV](https://img.shields.io/badge/View%20%26%20Data%20API-v1.2.15-green.svg)](http://developer-autodesk.github.io/)
@@ -115,6 +115,14 @@ def index
 ```
 
 Note: for the filepath feild, the sample filepath is "#{Rails.root}/public/Test.dwg". Here the file Test.dwg has been stored in the public folder of the Rails app created. You can do that or even put up a link to wherever you've put up your file.
+IMPORTANT: If you're uploading from a link and not from a file on your machine, you must also install the dependency gem 'nokogiri' in the Gemfile and doing bundle install. Finally, pass your filesize in bytes to your upload_file function too. Note: all of this is only required to upload file from a website, not from your own machine.
+Sample code for such a call after putting ```gem 'nokogiri'``` in your gem and doing bundle install: 
+```
+filename = "eg.dwg"
+filepath = "http://eg/eg.dwg"
+filesize = 2199482
+Adn_Viewer.upload_file(token, name, filename, filepath, filesize)
+```
 Also, for the 3 types of polices available, read this: [bucket policies.](http://adndevblog.typepad.com/cloud_and_mobile/2015/01/buckets-in-autodesk-view-and-data-api.html) <br />
 Go ahead and change the feilds here with your credentials, choice of bucket name and file. Read through the commands and comments to understand the gem functions. <br />
 Finally, add the following code to file app/views/welcome/index.html.erb:
