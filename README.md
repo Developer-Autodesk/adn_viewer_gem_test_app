@@ -1,3 +1,5 @@
+# Deprecated sample - not maintained anymore (Summer 2016)
+
 # adn_viewer_gem_test_app
 
 [![adn](https://img.shields.io/badge/adn_viewer_gem-v1.0.2-yellow.svg)](https://www.ruby-lang.org/en/)
